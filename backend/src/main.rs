@@ -1,56 +1,30 @@
-use axum::{
-    routing::{get, post},
-    http::StatusCode,
-    Json, Router,
-};
+use std::sync::Arc;
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
+
+#[derive(Debug,Deserialize, Serialize,ToSchema)]
+pub struct User {
+   pub id: i32,
+   pub name: String,
+   pub password: String,
+   pub data: Option<Vec<u8>>,
+}
+
+mod db;
+mod api;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> anyhow::Result<()> {
 
+    // Initialize database and add a user for demonstration
+    let db_path = "data.sqlite";
+    let db = db::Db::new(db_path)?;
+    db.init().await?;
+
+    // Pass the database path as shared state instead of the connection
+    let shared_state = Arc::new(db);
 
     // build our application with a route
-    let app = Router::new()
-        // `GET /` goes to `root`
-        .route("/", get(root))
-        // `POST /users` goes to `create_user`
-        .route("/users", post(create_user));
-
-    // run our app with hyper, listening globally on port 3000
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
-}
-
-// basic handler that responds with a static string
-async fn root() -> &'static str {
-    "Hello, World!"
-}
-
-async fn create_user(
-    // this argument tells axum to parse the request body
-    // as JSON into a `CreateUser` type
-    Json(payload): Json<CreateUser>,
-) -> (StatusCode, Json<User>) {
-    // insert your application logic here
-    let user = User {
-        id: 1337,
-        username: payload.username,
-    };
-
-    // this will be converted into a JSON response
-    // with a status code of `201 Created`
-    (StatusCode::CREATED, Json(user))
-}
-
-// the input to our `create_user` handler
-#[derive(Deserialize)]
-struct CreateUser {
-    username: String,
-}
-
-// the output to our `create_user` handler
-#[derive(Serialize)]
-struct User {
-    id: u64,
-    username: String,
+    api::handle_web(shared_state).await?;
+    Ok(())
 }
