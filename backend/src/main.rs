@@ -4,10 +4,12 @@ use utoipa::ToSchema;
 
 #[derive(Debug,Deserialize, Serialize,ToSchema)]
 pub struct User {
-   pub id: i32,
-   pub name: String,
-   pub password: String,
-   pub data: Option<Vec<u8>>,
+    pub id: Option<String>,
+    pub username: String,
+    pub password_hash: String,
+    pub avatar_image: Option<Vec<u8>>,
+    pub selected_skin_id: Option<String>,
+    pub selected_cape_id: Option<String>,
 }
 
 mod db;
@@ -17,9 +19,7 @@ mod api;
 async fn main() -> anyhow::Result<()> {
 
     // Initialize database and add a user for demonstration
-    let db_path = "data.sqlite";
-    let db = db::Db::new(db_path)?;
-    db.init().await?;
+    let db = db::Db::new().await?;
 
     // Pass the database path as shared state instead of the connection
     let shared_state = Arc::new(db);

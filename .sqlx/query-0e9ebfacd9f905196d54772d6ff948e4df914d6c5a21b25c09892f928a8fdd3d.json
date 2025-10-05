@@ -1,0 +1,50 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT id, username, password_hash, avatar_image, selected_skin_id, selected_cape_id FROM users",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "username",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "password_hash",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "avatar_image",
+        "ordinal": 3,
+        "type_info": "Blob"
+      },
+      {
+        "name": "selected_skin_id",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "selected_cape_id",
+        "ordinal": 5,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "0e9ebfacd9f905196d54772d6ff948e4df914d6c5a21b25c09892f928a8fdd3d"
+}
