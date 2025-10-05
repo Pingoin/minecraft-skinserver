@@ -1,0 +1,38 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT id, skin_name, texture_type, image_data FROM textures",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "skin_name",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "texture_type",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "image_data",
+        "ordinal": 3,
+        "type_info": "Blob"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "5b7ce554a47dde38497d688b68d7959da1cce0a799306522462bfd5fdcbe966a"
+}

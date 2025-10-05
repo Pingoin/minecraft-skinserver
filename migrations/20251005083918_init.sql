@@ -1,8 +1,8 @@
 -- Add migration script here
 CREATE TABLE textures (
     id          TEXT PRIMARY KEY NOT NULL,
-    name        TEXT NOT NULL UNIQUE,
-    type        TEXT NOT NULL,
+    skin_name        TEXT NOT NULL UNIQUE,
+    texture_type        TEXT NOT NULL,
     image_data  BLOB NOT NULL
 );
 
