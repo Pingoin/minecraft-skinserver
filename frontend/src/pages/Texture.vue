@@ -1,7 +1,8 @@
 <script setup lang="ts">
-defineProps<{ msg: string }>()
+import Texture from '../components/Texture.vue';
 </script>
 
+
 <template lang="pug">
-  h1 {{ msg }}
+Texture
 </template>
