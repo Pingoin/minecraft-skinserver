@@ -91,30 +91,3 @@ async function submitTexture() {
   }
 }
 </script>
-
-<style scoped>
-.texture-uploader {
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-}
-
-.preview img {
-  max-width: 128px;
-  image-rendering: pixelated;
-  border: 1px solid #ccc;
-  margin-top: 0.5rem;
-}
-
-.message {
-  text-align: center;
-  font-weight: bold;
-}
-</style>

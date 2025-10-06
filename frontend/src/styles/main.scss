@@ -1,0 +1,42 @@
+/** @format */
+
+$primary-color: #1976d2;
+
+body {
+  background-color: #fafafa;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  #app {
+    display: grid;
+    grid:
+      "header header header" auto
+      "leftSide body rightSide" 1fr
+      "footer footer footer" auto
+      / auto 1fr auto;
+    gap: 8px;
+  }
+}
+
+button {
+  background: $primary-color;
+  color: white;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+header {
+  grid-area: header;
+}
+nav {
+  grid-area: leftSide;
+}
+main {
+  grid-area: body;
+}
+footer {
+  grid-area: footer;
+}
+aside {
+  grid-area: rightSide;
+}
